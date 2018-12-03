@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express.Router(); // eslint-disable-line new-cap
-const loginController = require('../Controllers/loginController');
+const hallController = require('../Controllers/hallInfoController');
 const Middlewares = require('../middlewares');
 const {blacklistSchema} = require('../schemas');
 
 router
-    // .param('id', (req, res, next, id) => Middlewares.validateIntParam(next, id, 'race id'))
-    .route('/race')
-    .get((req, res, next) => loginController.my_test(req, res, next))
-    .all((req, res, next) => next(`Unsupported endpoint ${req.originalUrl}`));
+    .route('/halls')
+    .get(
+        (req, res, next) => Middlewares.jwt(req, res, next),
+        (req, res, next) => hallController.getAllHalls(req, res, next)
+    )
+    .all((req, res, next) => next(`Unknown url ${req.originalUrl}`));
 
 module.exports = router;

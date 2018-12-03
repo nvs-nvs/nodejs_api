@@ -9,10 +9,12 @@ const log = require('./app/components/log')(module);
 
 /* Лог Api */
 const apiLog = require('./app/components/middleware/logger');
-const hall = require('./app/api/Models/hallInfoModel');
 
 /* Роуты Апи */
 const apiRoutes = require('./app/api/routes/api-routes');
+
+/* Роуты Login */
+const loginRoutes = require('./app/api/routes/login-routes');
 
 /** @type {Object} */
 const api = new Express();
@@ -23,25 +25,23 @@ process.on('unhandledRejection', error => {
     log.error('unhandledRejection', error);
 });
 
-// api.use(function(req, res, next) {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
-//     res.header('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Authorization, Content-Length, X-Requested-With');
-//     //intercepts OPTIONS method
-//     'OPTIONS' === req.method ? res.sendStatus(200) : next();
-// });
+api.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Authorization, Content-Length, X-Requested-With');
+    //intercepts OPTIONS method
+    'OPTIONS' === req.method ? res.sendStatus(200) : next();
+});
 
 api.use(bodyParser.json());
 api.use(apiLog);
 
 api.use('/api', apiRoutes);
 
-api.get('/login', (req, res, next) => {
-    res.send({"dsds":"dd"});
-});
+api.use('/login', loginRoutes);
 
 api.all('/*', (req, res, next) => {
-    next(`Unsupported endpoint ${req.originalUrl}`);
+    next(`Unknown route ${req.originalUrl}`);
 });
 
 api.use((error, req, res, next) => {

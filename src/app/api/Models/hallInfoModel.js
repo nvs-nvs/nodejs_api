@@ -1,4 +1,4 @@
-const Storage = require('../../../app/components/storage');
+const storage = require('../../../app/components/storage');
 const mysql = require('promise-mysql');
 const log = require('../../../app/components/log.js')(module);
 const baseDbModel = require('./baseDbModel');
@@ -17,7 +17,7 @@ class hallInfoModel extends baseDbModel{
      * @returns {Promise.<*>} Map
      */
     async getFirstGameID() {
-        const mdbPool = Storage.getConnection(
+        const mdbPool = storage.getConnection(
             constants.constDbList.DB_TYPE_MYSQL,
             constants.constDbList.DB_MASTER
         );
@@ -32,7 +32,7 @@ class hallInfoModel extends baseDbModel{
         } catch (error) {
             throw error;
         } finally {
-            await (await this.mdbPool).releaseConnection(conn);
+            await (await mdbPool).releaseConnection(conn);
         }
     }
 

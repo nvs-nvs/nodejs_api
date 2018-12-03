@@ -1,15 +1,15 @@
 const hallInfoModel = require('../Models/hallInfoModel');
+const log = require('../../../app/components/log')(module);
+const baseController = require('./baseController');
 
-class loginController{
+class loginController extends baseController {
 
-    async my_test(req, res, next) {
+    async login(req, res, next) {
         try {
-            let hall = new hallInfoModel('ru');
-            const data = await hall.getFirstGameID();
-            res.send(data);
+
         } catch (error) {
-            //log.error(error);
-            return this.send(res, error, 500);
+            log.error(error);
+            return  this._send(res, error.toString(), 500);
         }
     }
 

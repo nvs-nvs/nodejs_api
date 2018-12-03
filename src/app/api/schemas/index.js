@@ -1,9 +1,5 @@
-const raceDataSchema = require('./raceDataSchema.js');
-const blacklistSchema = require('./blacklistSchema.js');
-const gameSettingsSchema = require('./gameSettingsSchema.js');
+const loginSchema = require('./loginSchema');
 
 module.exports = {
-    raceDataSchema,
-    blacklistSchema,
-    gameSettingsSchema,
+    loginSchema
 };

@@ -1,5 +1,4 @@
 const MySQL = require('promise-mysql');
-
 const AbstractConnection = require('./AbstractConnection');
 const log = require('../../../../app/components/log.js')(module);
 

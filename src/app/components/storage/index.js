@@ -13,23 +13,25 @@ class Storage {
     }
 
     /**
-     * @returns {Promise.<*[]>} no
+     * @returns {Promise.<*[]>}
      */
     init() {
         return Promise.all(Object.keys(this.connections).map(key => this.connections[key].initDb()));
     }
 
     /**
-     * @param {String<"postgres"|"mysql">} storageType Type of storage (postgres, mysql, etc...)
+     * @param {String<"postgres"|"mysql">} Type of storage (postgres, mysql, etc...)
+     * @param {String<"master"|"replica">} Type of connection (master, replica)
      * @returns {Promise.<any>} Resolves with connection, rejects with error
      */
-    getConnection(a, b) {
-        let storageType = a + '-' + b;
+    getConnection(dbType, dbConnType) {
+        let storageType = `${dbType}-${dbConnType}`;
         const self = this;
         try {
             if (! Object.prototype.hasOwnProperty.call(self.connections, storageType)) {
                 throw new Error(`Incorrect storage type '${storageType}'`);
             }
+
             return self.connections[storageType].getConnection();
         } catch (error) {
             throw error;

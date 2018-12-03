@@ -1,4 +1,5 @@
 const constants = require('./constants');
+const storage = require('../../../app/components/storage');
 
 class baseDbModel {
     constructor(country) {
@@ -6,6 +7,7 @@ class baseDbModel {
         if (!this.db_name) {
             throw new Error(`Country: ${country} not allowed`);
         }
+        storage.init();
     }
 
     static getDbFromCountry(country){
