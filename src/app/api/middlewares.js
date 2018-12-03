@@ -23,6 +23,10 @@ class RaceAPIMiddlewares {
         return paramValues.includes(param) ? next() : next(`Incorrect ${paramName} ${param}`);
     }
 
+    validateCountryParam(next, param, paramValues, paramName) {
+        return paramValues.includes(param) ? next() : next(`Incorrect ${paramName} ${param}`);
+    }
+
     validateParamByRegex(next, param, paramRex, paramName) {
         return paramRex.test(param) ? next() : next(`Incorrect ${paramName} ${param}`);
     }

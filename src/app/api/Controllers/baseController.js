@@ -7,7 +7,7 @@ class baseController {
     _send(res, data, code = 200) {
         const result = {
             success: code === 200,
-            data,
+            message: data
         };
 
         // if (code === 500 && process.env.NODE_ENV === 'production') {

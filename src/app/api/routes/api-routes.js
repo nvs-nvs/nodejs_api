@@ -5,6 +5,8 @@ const Middlewares = require('../middlewares');
 const {blacklistSchema} = require('../schemas');
 
 router
+    .param('country', (req, res, next, country) =>
+        Middlewares.validateStringParam(next, country, 'kazrukgzarmgeo', 'country'))
     .route('/halls')
     .get(
         (req, res, next) => Middlewares.jwt(req, res, next),
