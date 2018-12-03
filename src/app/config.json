@@ -1,0 +1,27 @@
+{
+  "log": {
+    "type": "file",
+    "filePath": "d:/react/log",
+    "fileLevel": "info",
+    "consoleLevel": "info"
+  },
+  "api": {
+      "port": 5000
+    },
+  "storage": {
+    "mysql-master": {
+      "host": "localhost",
+      "port": 3306,
+      "user": "root",
+      "password": "root",
+      "database": "db_game"
+    },
+    "mysql-replica": {
+      "host": "localhost",
+      "port": 3306,
+      "user": "root",
+      "password": "root",
+      "database": "db_game"
+    }
+  }
+}

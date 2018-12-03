@@ -1,0 +1,30 @@
+{
+  "name": "engineer_panel_api",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node service.js",
+    "start-dev": "set NODE_ENV='development' node service.js",
+    "pretest": "eslint --quiet .",
+    "autofix": "eslint --fix ."
+  },
+  "author": "Vladimir Nurov <vs_nurov@bingo-boom.ru>",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-jwt": "^5.3.1",
+    "ip": "^1.1.5",
+    "lodash": "^4.17.11",
+    "mobitel-json-schema-template": "^1.0.3",
+    "mobitel-zschema-readable-error": "^1.0.2",
+    "moment": "^2.22.2",
+    "mysql": "^2.16.0",
+    "on-finished": "^2.3.0",
+    "promise-mysql": "^3.3.1",
+    "winston": "^3.1.0",
+    "winston-daily-rotate-file": "^3.5.1",
+    "z-schema": "^3.24.2"
+  }
+}
