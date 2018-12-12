@@ -24,11 +24,11 @@ class hallInfoModel extends baseDbModel{
         const conn = await (await mdbPool).getConnection();
         const query =
             `
-            SELECT * from ${this.db_name}.clients Where cli_id = 1;
+            SELECT * from ${this.db_name}.clients Where cli_id = 7;
             `;
+        
         try {
-            const data = await conn.query(query);
-            return data;
+            return await conn.query(query);
         } catch (error) {
             throw error;
         } finally {

@@ -15,8 +15,8 @@ class Storage {
     /**
      * @returns {Promise.<*[]>}
      */
-    init() {
-        return Promise.all(Object.keys(this.connections).map(key => this.connections[key].initDb()));
+    async init() {
+        await Promise.all(Object.keys(this.connections).map(key => this.connections[key].initDb()));
     }
 
     /**

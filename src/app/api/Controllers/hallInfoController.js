@@ -5,6 +5,7 @@ const hallInfoModel = require('../Models/hallInfoModel');
 class hallInfoController extends baseController{
 
     async getAllHalls(req, res, next) {
+        const { country } = req.query;
         try {
             let hall = new hallInfoModel(country);
             const data = await hall.getFirstGameID();

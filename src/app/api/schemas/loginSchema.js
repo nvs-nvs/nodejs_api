@@ -7,10 +7,8 @@ const postLoginSchema = {
     required: [
         'login',
         'password',
-        'country',
     ],
     properties: {
-        country: templateTypes.string().enum(['ru', 'kaz', 'kgz', 'arm', 'geo']).done(),
         password: templateTypes.string().done(),
         login: templateTypes.string().done(),
     }

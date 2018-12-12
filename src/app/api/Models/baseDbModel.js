@@ -7,9 +7,8 @@ class baseDbModel {
         if (!this.db_name) {
             throw new Error(`Country: ${country} not allowed`);
         }
-        storage.init();
     }
-
+    
     static getDbFromCountry(country){
         switch (country) {
             case constants.constCountryList.COUNTRY_RU:

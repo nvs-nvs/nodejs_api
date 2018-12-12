@@ -7,11 +7,29 @@ module.exports = {
     type: 'object',
     additionalProperties: true,
     required: [
+        'auth',
         'log',
         'api',
         'storage'
     ],
     properties: {
+        // Auth settings
+        auth: {
+            type: 'object',
+            additionalProperties: false,
+            required: [
+                'secret_key',
+                'auth_url',
+                'client_id',
+                'client_secret',
+            ],
+            properties: {
+                secret_key : templateTypes.string().done(),
+                auth_url : templateTypes.string().done(),
+                client_id : templateTypes.string().done(),
+                client_secret : templateTypes.string().done(),
+            },
+        },
         // Logger settings
         log: {
             type: 'object',

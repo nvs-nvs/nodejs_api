@@ -1,7 +1,13 @@
 {
+  "auth": {
+    "secret_key" : "NewEngineerPanelApi",
+    "auth_url" : "https://id.bingo-boom.ru/api/getuser/",
+    "client_id" :  "new_engineerpanel_api",
+    "client_secret" : "NePtdffsRFgSEk"
+  },
   "log": {
     "type": "file",
-    "filePath": "d:/react/log",
+    "filePath": "/tmp/log",
     "fileLevel": "info",
     "consoleLevel": "info"
   },
@@ -10,17 +16,17 @@
     },
   "storage": {
     "mysql-master": {
-      "host": "localhost",
+      "host": "10.192.1.33",
       "port": 3306,
-      "user": "root",
-      "password": "root",
+      "user": "userForPanelBingoBoomRu",
+      "password": "mpassword",
       "database": "db_game"
     },
     "mysql-replica": {
-      "host": "localhost",
+      "host": "10.192.1.33",
       "port": 3306,
-      "user": "root",
-      "password": "root",
+      "user": "userForPanelBingoBoomRu",
+      "password": "mpassword",
       "database": "db_game"
     }
   }

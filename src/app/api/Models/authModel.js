@@ -1,39 +1,23 @@
 const axios = require('axios');
+const Buffer = require('buffer').Buffer;
+const config = require('../../config');
 
 class AuthModel{
-
-    // static checkAuth(){
-    //     axios('https://id.bingo-boom.ru', {
-    //         method: 'GET',
-    //         //method: 'POST',
-    //         // headers: {
-    //         //     'Content-Type': 'application/json'
-    //         // },
-    //         // data
-    //     })
-    //         .then(responce => {
-    //                 console.log(responce);
-    //                return {'success': true,};
-    //             },
-    //             (error) => {
-    //                 console.log(error);
-    //             }
-    //         )
-    // }
-
     static async auth(req, res, next) {
         try {
-            const data = await axios('https://id.bingo-boom.ru', {
-                        method: 'GET',
-                        //method: 'POST',
-                        // headers: {
-                        //     'Content-Type': 'application/json'
-                        // },
-                        // data
+            const { login, password } = req.body;
+            
+            const result = await axios(`${config.auth.auth_url}/${login}/${password}`, {
+                        method: 'POST',
+                         headers: {
+                             'Authorization' : `Basic ${new Buffer(`${config.auth.client_id}:${config.auth.client_secret}`).toString('base64')}`,
+                             'Content-Type': 'application/json'
+                         },
                     });
-            return data.data;
+            let data = result.data;
+            return result.data;
         } catch (error) {
-            throw error;
+            next(error);
         }
     }
 }

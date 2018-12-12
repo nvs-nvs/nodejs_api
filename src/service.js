@@ -1,5 +1,12 @@
 const bodyParser = require('body-parser');
 const Express = require('express');
+const passport = require('passport');
+require('./app/components/passport')(passport);
+
+const storage = require('./app/components/storage');
+(async () => {
+    await storage.init();
+})();
 
 /* Модуль Конфига */
 const config = require('./app/components/config');
@@ -36,7 +43,15 @@ api.use(function(req, res, next) {
 api.use(bodyParser.json());
 api.use(apiLog);
 
-api.use('/api', apiRoutes);
+api.use('/api', passport.initialize());
+
+try {
+    api.use('/api', passport.authenticate('jwt', {session:false}), apiRoutes);
+}catch (e) {
+    console.log(e.Error);
+}
+
+//api.use('/api', apiRoutes);
 
 api.use('/login', loginRoutes);
 
@@ -47,10 +62,8 @@ api.all('/*', (req, res, next) => {
 api.use((error, req, res, next) => {
 
     const result = {
-        success: false,
-        error: {
-            message: error.message || error,
-        },
+        error: true,
+        message: error.message || error,
     };
     res.status(error.code || 400).send(result);
 });
