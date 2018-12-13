@@ -5,14 +5,14 @@ const config = require('./config');
 
 module.exports = function(passport) {
     const opts = {
-        secretOrKey: config.auth.secret_key,
-        jwtFromRequest: ExtractJwt.fromHeader('X-Auth-Token')
+        secretOrKey: config.auth.token_key,
+        jwtFromRequest: ExtractJwt.fromHeader('x-auth-token')
     };
     passport.use(new JwtStrategy(opts, async (payload, done) => {
         try{
-            next(null, "fd");
+            done(null, payload);
         }catch(error){
-            next(error, false)
+            done(error, false)
         }
     }));
 };

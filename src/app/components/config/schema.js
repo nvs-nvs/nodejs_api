@@ -18,13 +18,13 @@ module.exports = {
             type: 'object',
             additionalProperties: false,
             required: [
-                'secret_key',
+                'token_key',
                 'auth_url',
                 'client_id',
                 'client_secret',
             ],
             properties: {
-                secret_key : templateTypes.string().done(),
+                token_key : templateTypes.string().done(),
                 auth_url : templateTypes.string().done(),
                 client_id : templateTypes.string().done(),
                 client_secret : templateTypes.string().done(),

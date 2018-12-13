@@ -45,13 +45,7 @@ api.use(apiLog);
 
 api.use('/api', passport.initialize());
 
-try {
-    api.use('/api', passport.authenticate('jwt', {session:false}), apiRoutes);
-}catch (e) {
-    console.log(e.Error);
-}
-
-//api.use('/api', apiRoutes);
+api.use('/api', passport.authenticate('jwt', {session:false}), apiRoutes);
 
 api.use('/login', loginRoutes);
 
@@ -60,7 +54,6 @@ api.all('/*', (req, res, next) => {
 });
 
 api.use((error, req, res, next) => {
-
     const result = {
         error: true,
         message: error.message || error,

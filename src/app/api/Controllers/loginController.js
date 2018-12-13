@@ -40,9 +40,8 @@ class loginController extends baseController {
             }
             const token = jwt.sign(
                 answer.data,
-                config.auth.secret_key, {
-                    expiresIn: 86400
-                }
+                config.auth.token_key,
+                { expiresIn: '24 hours' }
             );
             return res.send({
                     auth: true,

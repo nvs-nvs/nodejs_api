@@ -1,6 +1,6 @@
 {
   "auth": {
-    "secret_key" : "NewEngineerPanelApi",
+    "token_key" : "NewEngineerPanelApi",
     "auth_url" : "https://id.bingo-boom.ru/api/getuser/",
     "client_id" :  "new_engineerpanel_api",
     "client_secret" : "NePtdffsRFgSEk"
