@@ -16,14 +16,14 @@
     },
   "storage": {
     "mysql-master": {
-      "host": "10.192.1.33",
+      "host": "a45db-game.bingo-boom.ru.lo",
       "port": 3306,
       "user": "userForPanelBingoBoomRu",
       "password": "mpassword",
       "database": "db_game"
     },
     "mysql-replica": {
-      "host": "10.192.1.33",
+      "host": "a45db-game.bingo-boom.ru.lo",
       "port": 3306,
       "user": "userForPanelBingoBoomRu",
       "password": "mpassword",

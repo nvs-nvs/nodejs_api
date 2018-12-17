@@ -15,7 +15,7 @@ router
     .route('/halls')
     .post(
         (req, res, next) => Middlewares.validatePostBody(req, next, hallsShema.post),
-        (req, res, next) => hallController.getAllHalls(req, res, next)
+        (req, res, next) => hallController.getHallInfo(req, res, next)
     )
     .all((req, res, next) => next(`Unknown url ${req.originalUrl}`));
 

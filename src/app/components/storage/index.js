@@ -5,7 +5,7 @@ const MySQLConnection = require('./connections/MySQLConnection');
  * Encapsulates connections to storage
  */
 class Storage {
-    constructor() {
+    constructor(opts) {
         this.connections = {
             'mysql-master' : new MySQLConnection(config.storage['mysql-master']),
             'mysql-replica': new MySQLConnection(config.storage['mysql-replica'])
