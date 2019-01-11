@@ -6,7 +6,7 @@
     "client_secret" : "NePtdffsRFgSEk"
   },
   "log": {
-    "type": "file",
+    "type": "both",
     "filePath": "/tmp/log",
     "fileLevel": "info",
     "consoleLevel": "info"

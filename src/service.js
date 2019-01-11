@@ -47,6 +47,22 @@ api.use('/api', passport.initialize());
 
 api.use('/api', passport.authenticate('jwt', {session:false}), apiRoutes);
 
+api.all('/api', (req, res, next) => {
+    if(!req.user){
+        res.status(401).send({
+            error: true,
+            message: 'Неизвесный пользователь.',
+        });
+    }
+    if(!req.user.role || !req.user.email || !req.user.password || !req.user.active){
+        res.status(401).send({
+            error: true,
+            message: 'У пользователя не корректные данные (role, email, active)',
+        });
+    }
+    
+});
+
 api.use('/login', loginRoutes);
 
 api.all('/*', (req, res, next) => {

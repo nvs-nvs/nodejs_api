@@ -2,6 +2,13 @@ const path = require('path');
 const winston = require('winston');
 const WinstonDailyRotateFile = require('winston-daily-rotate-file');
 const config = require('../../app/components/config');
+
+const { combine, timestamp, label, printf } = winston.format;
+
+const myFormat = printf(info => {
+    return `${info.timestamp} [${info.label}] ${info.level}: ${info.message}`;
+});
+
 /**
  * Customize logger timestamp format to locale datetime with milliseconds
  * @returns {string} Formatted datetime string
@@ -56,6 +63,12 @@ const getLogger = function getLogger(module) {
     return winston.createLogger({
         exitOnError: false,
         transports: setTransports,
+        format: combine(
+            label({ label: module.id }),
+            timestamp(),
+            myFormat
+        )
     });
 };
+
 module.exports = getLogger;

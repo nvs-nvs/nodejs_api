@@ -1,43 +1,29 @@
 const storage = require('../../../app/components/storage');
 const mysql = require('promise-mysql');
 const log = require('../../../app/components/log.js')(module);
-const baseDbModel = require('./baseDbModel');
+const baseDbModel = require('./BaseDbModel');
 const constants = require('./constants');
 
 /**
  * @class {hallInfoModel}
  */
-class hallInfoModel extends baseDbModel{
+class TemplateModel extends baseDbModel{
     constructor(country){
         super(country);
     }
     /**
-     * @param {Array} gameKinds gk
-     * @param {Date} startDate date
      * @returns {Promise.<*>} Map
      */
-    async getHallInfo(hall_id) {
+    async getAllTemplates() {
         const mdbPool = storage.getConnection(
             constants.constDbList.DB_TYPE_MYSQL,
-            constants.constDbList.DB_MASTER
+            constants.constDbList.DB_REPLICA
         );
         const conn = await (await mdbPool).getConnection();
-        const query =
-        `
-        SELECT
-        c.*,
-        h.gs_id,
-        h.permission
-        FROM
-        ${this.db_name}.clients as c
-        LEFT JOIN
-        ${this.db_name}.halls as h
-        using(hall_id)
-        where hall_id = :hall_id
-        `;
+        let query = `SELECT DISTINCT template_name FROM templates_distr`;
         
         try {
-            return await conn.query(query, {hall_id});
+            return await conn.query(query);
         } catch (error) {
             throw error;
         } finally {
@@ -46,4 +32,4 @@ class hallInfoModel extends baseDbModel{
     }
 }
 
-module.exports = hallInfoModel;
+module.exports = TemplateModel;

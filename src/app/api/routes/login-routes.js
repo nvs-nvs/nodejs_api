@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router(); // eslint-disable-line new-cap
 const Validators = require('../../components/middleware/validators');
 const { loginSchema } = require('../schemas/');
-const loginController = require('../Controllers/loginController');
+const loginController = require('../Controllers/LoginController');
 
 router
         .route('/')
